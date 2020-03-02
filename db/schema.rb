@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_194151) do
+ActiveRecord::Schema.define(version: 2020_03_02_210440) do
+
+  create_table "genre_jams", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "jam_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genre_users", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "instruments", force: :cascade do |t|
     t.string "name"
@@ -20,14 +40,13 @@ ActiveRecord::Schema.define(version: 2020_03_02_194151) do
 
   create_table "jams", force: :cascade do |t|
     t.string "name"
-    t.string "genre"
-    t.date "date"
-    t.time "time"
+    t.integer "space_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spaces", force: :cascade do |t|
+    t.string "name"
     t.string "size"
     t.string "address"
     t.string "description"
