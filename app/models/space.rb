@@ -1,3 +1,3 @@
 class Space < ApplicationRecord
-  has_many jams
+  has_many :jams
 end
