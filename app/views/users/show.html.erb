@@ -1,7 +1,26 @@
-<h2> Welcome back <%= @user.name%> </h2>
+<h2><%= @user.name%> </h2>
 
-<%= link_to "Edit your profile", edit_user_path(@user)%><br><br>
-
-<%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-  <input type=submit value='logout'>
+<h4> Instrument(s): </h4>
+<ul>
+<% @user.instruments.each do |inst| %>
+    <li><%= inst.name%></li>
 <% end %>
+</ul>
+
+<h4> Genre(s): </h4>
+<ul>
+<% @user.genres.each do |gen| %>
+    <li><%= gen.name%></li>
+<% end %>
+</ul>
+
+<h4> Your Jams:</h4>
+<ul>
+<% @user.jams.each do |jam| %>
+    <li><%= jam.name%></li>
+<% end %>
+</ul>
+
+
+
+
