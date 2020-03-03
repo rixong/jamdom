@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :genres
   resources :users
+  resources :jams
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
