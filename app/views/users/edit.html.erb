@@ -1,11 +1,27 @@
-<h2>Welcome <%= @user.name%></h2>
 
-<h4>Setup your profile:</h4>
+<div class="ui grid">
+  <div class="ui four wide column"></div>
+  <div class="ui nine wide column">
+    <h2><%= @user.name%>:</h2>
+    <h4>Tell us about your musical background:</h4>
+  
+    <%= form_for @user do |f|%>
+      <%= f.label :bio %><br>
+      <%= f.text_area :bio, size: "40x8" %><br><br>
+      <div class="ui grid" >
+        <div class="four wide column">
+          <%= f.label :genre_ids, "Choose a genre" %><br>
+          <%= f.collection_select :genre_ids, Genre.all, :id, :name %><br>
+        </div>
+        <div class="eight wide column">
+          <%= f.label :instrument_ids, "Choose an Instrument" %><br>
+          <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
+        </div>
+      </div>
+      <br> 
+      <%= f.submit "Submit info", :class => "ui button" %>
+    <% end %>
 
-<%= form_for @user do |f|%>
-  <%= f.label :bio, "Tell us about your musical background:" %><br><br>
-  <%= f.text_area :bio, size: "40x8" %><br><br>
-
-
-<%= f.submit "Submit info"%>
-<% end %>
+  </div>
+  <div class="ui three wide column"></div>
+</div>

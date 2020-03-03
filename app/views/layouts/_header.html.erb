@@ -1,2 +1,10 @@
 <h1 class="ui center aligned header">Jamdom - Tinder for Playahs</h1>
+
+<% if logged_in?%>
+  <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
+    <input type=submit value='logout'>
+  <% end %>
+<%= link_to "Edit your profile", edit_user_path(current_user) %>
+<% end %>
+<%# byebug %>
 <div class="ui divider"></div>
