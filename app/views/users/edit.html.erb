@@ -1,2 +1,11 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h2>Welcome <%= @user.name%></h2>
+
+<h4>Setup your profile:</h4>
+
+<%= form_for @user do |f|%>
+  <%= f.label :bio, "Tell us about your musical background:" %><br><br>
+  <%= f.text_area :bio, size: "40x8" %><br><br>
+
+
+<%= f.submit "Submit info"%>
+<% end %>
