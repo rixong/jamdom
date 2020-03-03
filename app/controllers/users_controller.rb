@@ -10,10 +10,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    return redirect_to controller: 'users', action: 'new' unless @user.save
-    session[:user_id] = @user.id
-    redirect_to edit_user_path(@user)
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to edit_user_path(@user)
+    else
+      @user.errors.full_messages
+      # byebug
+      render :new
+    end
   end
 
   def edit
@@ -24,7 +29,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user)
-
   end
  
   private
@@ -32,7 +36,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :bio, {:genre_ids => []}, {:instrument_ids => []}, :password, :password_confirmation)
   end
 
-
-
-  
 end
