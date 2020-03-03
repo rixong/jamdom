@@ -1,10 +1,10 @@
 <h1 class="ui center aligned header">Jamdom - Tinder for Playahs</h1>
 
 <% if logged_in?%>
-  <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-    <input type=submit value='logout'>
-  <% end %>
-<%= link_to "Edit your profile", edit_user_path(current_user) %>
-<%= link_to "Make a jam", new_jam_path %>
+  <%= link_to "Log out", logout_path, class: 'ui button small', method: :post %>
+  <%= link_to "Edit your profile", edit_user_path(current_user), class: 'ui button small' %>
+  <%= link_to "Make a jam",  new_jam_path, class: 'ui button small' %>
+<% else %>
+  <%= link_to "Log in", login_path, class: 'ui button small' %>
 <% end %>
 <div class="ui divider"></div>
