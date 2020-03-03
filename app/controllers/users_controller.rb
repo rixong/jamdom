@@ -26,6 +26,17 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
 
   end
+
+  def send_invite
+
+  end
+
+  def accept_invite
+
+  end
+
+
+
  
   private
   def user_params

@@ -17,7 +17,7 @@
 <h4> Your Jams:</h4>
 <ul>
 <% @user.jams.each do |jam| %>
-    <li><%= jam.name%></li>
+    <li><%= link_to jam.name, jam_path(jam)%></li>
 <% end %>
 </ul>
 

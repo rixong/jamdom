@@ -8,3 +8,7 @@
 <h1><%=@jam.time%></h1>
 <h1><%=@jam.info%></h1>
 <h1><%=@jam.tunes%></h1>
+<%@user_jams.each do |user_jam|%>
+    <h2><%= link_to user_jam.user.name, user_path(user_jam.user)%></h2>
+<%end%>
+<%= link_to "View Requests", action: "request_index"%>

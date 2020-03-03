@@ -1,6 +1,6 @@
 <%= form_for @jam do |f| %>
-    <%=f.label :genre%>
-    <%=f.text_field 
+    <%=f.label :name%>
+    <%=f.text_field :name%>
 
     <%=f.label :genre%>
     <%=f.collection_select(:genre_ids, Genre.all, :id, :name,{},{:multiple => true}) %>

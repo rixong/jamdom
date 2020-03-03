@@ -1,9 +1,9 @@
+Jam.create
+
 
 Space.create(name: "Joes Garage")
-
 Space.create(name: "Antones")
 Space.create(name: "Continental Club")
-
 
 Instrument.create(name: "Guitar")
 Instrument.create(name: "Drums")
@@ -54,12 +54,23 @@ Instrument.create(name: "Steel Drum")
 Instrument.create(name: "Banjo")
 Instrument.create(name: "Lap-steel Guitar")
 Instrument.create(name: "Pipe-organ")
-
-
 Genre.create(name: "Rock")
 Genre.create(name: "Jazz")
 Genre.create(name: "Blues")
 Genre.create(name: "Country")
 Genre.create(name: "Soul")
-
-
+Genre.create(name: "Rap")
+Genre.create(name: "Classical")
+Genre.create(name: "Oldies")
+Genre.create(name: "Decades")
+Genre.create(name: "Indie")
+Genre.create(name: "Progressive Rock")
+Genre.create(name: "Metal")
+Genre.create(name: "Bluegrass")
+Genre.create(name: "Latin")
+Genre.create(name: "Flamenco")
+Genre.create(name: "Mariachi")
+Genre.create(name: "Polka")
+Genre.create(name: "LoFi")
+Genre.create(name: "Pop")
+Genre.create(name: "Folk")

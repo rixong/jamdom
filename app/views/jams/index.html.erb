@@ -1,0 +1,5 @@
+<h1>Jams Index</h1>
+<%@jams.each do |jam|%>
+        <h3><%= link_to jam.name, jam_path(jam)%></h3>
+        <h1><%= button_to "+ Send Request", action: "send_request", id: jam.id%></h1><br>
+<%end%>
