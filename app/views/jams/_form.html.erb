@@ -1,0 +1,24 @@
+<%= form_for @jam do |f| %>
+    <%=f.label :genre%>
+    <%=f.text_field 
+
+    <%=f.label :genre%>
+    <%=f.collection_select(:genre_ids, Genre.all, :id, :name,{},{:multiple => true}) %>
+
+    <%=f.label :date %>
+    <%=f.date_select(:date, defualt: Date.today) %>
+
+    <%=f.label :time %>
+    <%=f.time_select(:time) %>
+
+    <%=f.label :space%>
+    <%=f.collection_select(:space_id, Space.all, :id, :name) %>
+
+    <%=f.label :info%>
+    <%=f.text_area :info %>
+
+    <%=f.label :tunes%>
+    <%=f.text_area :tunes %>
+
+    <%=f.submit%>
+    <%end%>

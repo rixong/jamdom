@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   def require_logged_in
     return redirect_to login_path unless logged_in?
   end
+
+  helper_method :current_user, :logged_in?
   
   helper_method :current_user, :logged_in?
 end

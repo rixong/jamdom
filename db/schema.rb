@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(version: 2020_03_02_210440) do
   create_table "jams", force: :cascade do |t|
     t.string "name"
     t.integer "space_id"
+    t.date "date"
+    t.time "time"
+    t.text "info"
+    t.text "tunes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,10 @@
+<h1><%=@jam.name%></h1>
+<h1><%=@jam.space.name%></h1>
+
+<%@jam.genres.each do |genre|%>
+    <%=genre.name%>
+<%end%>
+<h1><%=@jam.date%></h1>
+<h1><%=@jam.time%></h1>
+<h1><%=@jam.info%></h1>
+<h1><%=@jam.tunes%></h1>
