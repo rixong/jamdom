@@ -11,11 +11,11 @@
       <div class="ui grid" >
         <div class="four wide column">
           <%= f.label :genre_ids, "Choose a genre" %><br>
-          <%= f.collection_select :genre_ids, Genre.all, :id, :name %><br>
+          <%= f.collection_select :genre_ids, Genre.all, :id, :name, {}, {:multiple => true} %><br>
         </div>
         <div class="eight wide column">
           <%= f.label :instrument_ids, "Choose an Instrument" %><br>
-          <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
+          <%= f.collection_select :instrument_ids, Instrument.all, :id, :name, {}, {:multiple => true} %><br>
         </div>
       </div>
       <br> 
