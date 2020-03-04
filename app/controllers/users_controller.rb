@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
-    # @user ||= User.find(params[:id])
+    @user = User.find(params[:id])
   end
   
   def new
@@ -35,10 +34,19 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user)
   end
+
+  def instrument_search
+    redirect_to results_path(params[:instrument_ids])
+  end
+  
+  def instrument_results
+    @users = User.instrument_search(params[:id])
+    # binding.pry
+  end
  
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :bio, {:genre_ids => []}, {:instrument_ids => []}, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :bio, {:genre_ids => []}, {:instrument_ids => []}, :password, :password_confirmation)
+    end
 
 end

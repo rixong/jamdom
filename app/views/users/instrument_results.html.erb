@@ -1,4 +1,4 @@
-<h2>Musicians:</h2>
+<h2>Musicians who play <%= Instrument.get_instrument_by_id(params[:id]) %> </h2>
 
 <div class="ui list">
   <% @users.each do |user| %>
@@ -6,8 +6,3 @@
           <%= user.instruments.map{|i|i.name}.join(', ') %></div>
   <% end %>
 </div>
-
-<%= form_with url: instruments_path do |f| %>
-  <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
-  <%= f.submit "Submit search"%>
-<% end %>
