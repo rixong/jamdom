@@ -1,6 +1,7 @@
 <%= form_for @jam do |f| %>
     <%=f.label :name%>
-    <%=f.text_field :name %>
+    <%=f.text_field :name%>
+
 
     <%=f.label :genre%>
     <%=f.collection_select(:genre_ids, Genre.all, :id, :name,{},{:multiple => true}) %>
@@ -21,4 +22,4 @@
     <%=f.text_area :tunes %>
 
     <%=f.submit%>
-    <%end%>
+<%end%>

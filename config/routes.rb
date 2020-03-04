@@ -7,7 +7,18 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   
+  
+  get '/jams/:id/requests', to: 'jams#request_index'
+  post '/jams/:id/requests', to: 'jams#accept_request'
+  delete '/jams/:id/requests', to: 'jams#decline_request'
+  post '/jams/index', to: 'jams#send_request'
+
+
+
+
+
   resources :users
+  post '/users/index', to: 'users#send_invite'
   post 'users/instrument_search', to:'users#instrument_search', as: 'instruments'
   get 'users/instrument_results/:id', to:'users#instrument_results', as: 'results'
 

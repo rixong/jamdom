@@ -45,6 +45,17 @@ class UsersController < ApplicationController
     @users = User.instrument_search(params[:id])
 
   end
+
+  def send_invite
+
+  end
+
+  def accept_invite
+
+  end
+
+
+
  
   private
     def user_params

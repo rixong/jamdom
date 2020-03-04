@@ -1,0 +1,6 @@
+<%@requests.each do |request| %>
+    <%=link_to request.user.name, user_path(request.user) %><br>
+    <%@user = request.user%>
+    <%= button_to "✓ Accept", action: "accept_request", data: @user %>
+    <%= button_to "ø Decline", action: "decline_request", data: @user%>
+<%end%>

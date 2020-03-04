@@ -1,14 +1,32 @@
 class JamsController < ApplicationController
 
-
-    before_action :set_jam, only: [:show, :update, :destroy]
+    before_action :set_jam, only: [:show, :update, :destroy, :edit, :request_index, :accept_request, :decline_request]
 
     def index
+        @jams = UserJam.where("user_id != ?", current_user.id) #filtering out current users jam requests
+        @users_jams = UserJam.where("user_id = ?", current_user.id)
+        @jams = @jams.collect{|jam| jam.jam_id}.uniq
+        @users_jams = @users_jams.collect{|users_jam| users_jam.jam_id}.uniq
 
+        @solution = @jams
+        @jams = []
+
+        @solution.each do |jam|
+            if !@users_jams.include?(jam)
+                @jams << jam
+            end 
+        end
+
+        @jams = @jams.map do |jam|
+            Jam.where(id: jam)
+        end
     end
 
     def show
+        @user_jams = []
+        @user_jams = UserJam.where(jam_id: @jam.id)
     end
+
 
     def new
         @jam = Jam.new
@@ -18,6 +36,7 @@ class JamsController < ApplicationController
         @jam = Jam.new(jam_params)
         @jam.save
         UserJam.create(status: "host", user_id: current_user.id, jam_id: @jam.id)
+        
         redirect_to jam_path(@jam)
     end
 
@@ -26,11 +45,41 @@ class JamsController < ApplicationController
     end
 
     def update
-
+        @jam.save
+        redirect_to jam_path(@jam)
     end
-    
-    def destroy
 
+    #custom actions
+    def request_index
+        @requests = UserJam.where(jam_id: @jam.id, status: "request") 
+        render "request_index"
+    end
+
+    def accept_request
+        @user = params[:data][0]
+        userjam_instance = UserJam.where(user: @user[0], jam_id: @jam.id, status: "request")
+        userjam_instance.update(status: "accepted")
+        redirect_to jam_path(@jam)
+    end
+
+    def decline_request
+        @user = params[:data][0]
+        UserJam.where(user: @user[0], jam_id: @jam.id).destroy
+        redirect_to jam_path(@jam)
+    end
+
+    def send_request
+        @data = params[:data][0]
+        @jam = Jam.where(id: @data)
+        UserJam.create(user_id: current_user.id, jam_id: @jam[0].id, status: "request") 
+
+
+        @jams = UserJam.where("user_id != ?", current_user.id)
+        @jams = @jams.collect{|jam| jam.jam_id}.uniq
+        @jams = @jams.map do |jam|
+            Jam.where(id: jam)
+        end
+        redirect_to jams_path
     end
 
     private 
