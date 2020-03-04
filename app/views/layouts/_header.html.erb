@@ -9,6 +9,7 @@
   <%= link_to "Setup a jam",  new_jam_path, class: 'ui button small' %>
   <%= link_to "Browse musicians",  users_path, class: 'ui button small' %>
   <%= link_to "Browse jams",  jams_path, class: 'ui button small' %>
+  Current user: <%= link_to current_user.name, current_user%>
 <% else %>
   <%= link_to "Log in", login_path, class: 'ui button small' %>
 <% end %>

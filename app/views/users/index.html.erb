@@ -7,7 +7,12 @@
   <% end %>
 </div>
 
-<%= form_with url: instruments_path do |f| %>
-  <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
-  <%= f.submit "Submit search"%>
-<% end %>
+
+<div class="ui grid">
+  <div class="two wide column">
+    <%= form_with url: instruments_path, class: "ui form"  do |f|%>
+      <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
+      <%= f.submit "Submit search"%>
+    <% end %>
+  </div>
+</div>

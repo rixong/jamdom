@@ -13,7 +13,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   
   def self.instrument_search(id)
-    # User.joins(:user_instruments).where(user_instruments: {instrument_id: 2})
     User.joins(:user_instruments).where('user_instruments.instrument_id = ?', id)
   end
 
