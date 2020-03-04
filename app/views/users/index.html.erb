@@ -1,2 +1,18 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h2>Musicians:</h2>
+
+<div class="ui list">
+  <% @users.each do |user| %>
+    <div class="ui list"><%= link_to user.name, user_path(user) %> - 
+          <%= user.instruments.map{|i|i.name}.join(', ') %></div>
+  <% end %>
+</div>
+
+
+<div class="ui grid">
+  <div class="two wide column">
+    <%= form_with url: instruments_path, class: "ui form"  do |f|%>
+      <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
+      <%= f.submit "Submit search"%>
+    <% end %>
+  </div>
+</div>

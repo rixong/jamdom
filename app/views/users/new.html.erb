@@ -1,3 +1,12 @@
+  <% if @user.errors.messages.any? %>
+    <div class="ui negative message">
+      <% @user.errors.full_messages.each do |m| %>
+        <ul>
+        <li><%= m%></li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
 
 <div class="ui grid">
   <div class="ui four wide column"></div>
@@ -9,7 +18,7 @@
         Email (username): <%= f.text_field :email %><br>
         Password: <%= f.password_field :password %><br>
         Password Confirmation: <%= f.password_field :password_confirmation %><br><br>
-        <%= f.submit "Submit", :class => "ui button" %>
+        <%= f.submit "Here we go...", :class => "ui button" %>
       <% end %>
     </div>
   </div>

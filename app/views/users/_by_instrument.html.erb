@@ -1,0 +1,6 @@
+<div class="ui list">
+  <% @users.each do |user| %>
+    <div class="ui list"><%= link_to user.name, user_path(user) %> - 
+          <%= user.instruments.map{|i|i.name}.join(', ') %></div>
+  <% end %>
+</div>

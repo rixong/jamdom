@@ -4,10 +4,25 @@
 body {
   background-color: rgb(182, 182, 182);
   margin-top: 20px;
-  // margin-left: auto;
-  // margin-right: auto;
+
 }
+
+.large-font{
+  font-size: 2rem;
+  font-weight: bold;
+  color:rgb(41, 116, 122)
+}
+
+.small-font{
+  font-size: 1rem;
+  font-style: italic;
+  }
 
 .body-content {
   height: 550px;
+}
+
+h1.ui.header {
+  color: rgb(34, 115, 121);
+  font-size: 4rem;
 }
