@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_action :require_logged_in
+  before_action :require_logged_in, except: [:new, :create]
   
   def index
     @users = User.all
@@ -20,7 +20,6 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user)
     else
       @user.errors.full_messages
-      # byebug
       render :new
     end
   end
