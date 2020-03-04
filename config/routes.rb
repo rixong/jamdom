@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   get 'users/instrument_results/:id', to:'users#instrument_results', as: 'results'
 
   root 'users#show'
+
+  get '/about', to: 'static_pages#about'
+  get '/contact', to: 'static_pages#contact'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

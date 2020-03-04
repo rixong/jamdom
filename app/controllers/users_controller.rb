@@ -32,6 +32,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    link = parse_youtube(params[:user][:video])
+    @user.update(video: link) if link
     redirect_to user_path(@user)
   end
 
@@ -41,12 +43,21 @@ class UsersController < ApplicationController
   
   def instrument_results
     @users = User.instrument_search(params[:id])
-    # binding.pry
+
   end
  
   private
     def user_params
-      params.require(:user).permit(:name, :email, :bio, {:genre_ids => []}, {:instrument_ids => []}, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :phone, :bio, {:genre_ids => []}, {:instrument_ids => []}, :password, :password_confirmation)
+    end
+
+    def parse_youtube(link)
+      if link.include?("https://youtu.be/")
+        link.gsub!("https://youtu.be/", "")
+        full_link = "https://www.youtube.com/embed/#{link}"
+      else
+        nil
+      end
     end
 
 end
