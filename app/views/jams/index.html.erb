@@ -1,5 +1,9 @@
 <h1>Jams Index</h1>
-<%@jams.each do |jam|%>
-        <h3><%= link_to jam.name, jam_path(jam)%></h3>
-        <h1><%= button_to "+ Send Request", action: "send_request", id: jam.id%></h1><br>
+<%if @jams.empty? == true%>
+        <h1>You have requested all jams</h1>
+<%else%>
+        <%@jams.each do |jam|%>
+                <h3><%= link_to jam[0].name, jam_path(jam[0])%></h3>
+                <h1><%= button_to "+ Send Request", action: "send_request", data: jam.ids %></h1><br>
+        <%end%>
 <%end%>
