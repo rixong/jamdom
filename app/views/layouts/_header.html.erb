@@ -1,9 +1,13 @@
-<h1 class="ui center aligned header">Jamdom - Tinder for Playahs</h1>
+<div class="ui center aligned header">
+  <span class="large-font">Jamdom </span>  
+  <span class="small-font">Tinder for Playahs</span>
+</div>
 
 <% if logged_in?%>
   <%= link_to "Log out", logout_path, class: 'ui button small', method: :post %>
-  <%= link_to "Edit your profile", edit_user_path(current_user), class: 'ui button small' %>
-  <%= link_to "Make a jam",  new_jam_path, class: 'ui button small' %>
+  <%= link_to "Edit profile", edit_user_path(current_user), class: 'ui button small' %>
+  <%= link_to "Setup a jam",  new_jam_path, class: 'ui button small' %>
+  <%= link_to "Browse musicians",  users_path, class: 'ui button small' %>
 <% else %>
   <%= link_to "Log in", login_path, class: 'ui button small' %>
 <% end %>

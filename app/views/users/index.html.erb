@@ -1,7 +1,12 @@
-<h2>Browse Players</h2>
+<h2>Musicians:</h2>
 
-<div class="ui list">
-  <% @users.each do |user| %>
-    <div class="ui list"><%= link_to user.name, user_path(user) %></div>
-  <% end %>
+<div class="ui category search">
+  <div class="ui icon input">
+    <input class="prompt" type="text" placeholder="Search instruments...">
+    <i class="search icon"></i>
+  </div>
+  <div class="results"></div>
 </div>
+<%= render 'by_instrument'%>
+
+<%= button_to "Search by "%>
