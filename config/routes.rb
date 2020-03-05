@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
 
   resources :users
-  post '/users/index', to: 'users#send_invite'
+  post '/users/show', to: 'users#send_invite'
+  post '/users/accept_invite', to: 'users#accept_invite'
+  post '/users/delete_invite', to: 'users#decline_invite'
   post 'users/instrument_search', to:'users#instrument_search', as: 'instruments'
   get 'users/instrument_results/:id', to:'users#instrument_results', as: 'results'
 

@@ -27,8 +27,8 @@
     
         <h2><%= @user.name%> </h2>
 
-        <iframe width="420" height="315">
-        <%# src=<%= @user.video %> 
+        <iframe width="420" height="315"
+         src=<%= @user.video %>> 
         </iframe>
 
         <h4> Bio: </h4><p> <%= @user.bio %> </p>
@@ -50,7 +50,10 @@
               - Pending request
           <% end %>
 
-          <%# if %>
+          <% if jam.status(current_user) == 'invite'%>
+            <%= button_to "Accept", action: "accept_invite", data: {user_id: current_user, jam_id: jam}%>
+            <%= button_to "Decline", action: "decline_invite", data: {user_id: current_user, jam_id: jam}%>
+          <% end %>
 
         </li>
       <% end %>
