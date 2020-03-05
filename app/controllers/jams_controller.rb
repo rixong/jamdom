@@ -56,16 +56,17 @@ class JamsController < ApplicationController
     end
 
     def accept_request
-        @user = params[:data][0]
-        userjam_instance = UserJam.where(user: @user[0], jam_id: @jam.id, status: "request")
-        userjam_instance.update(status: "accepted")
-        redirect_to jam_path(@jam)
+        user_id = params[:data][:user_id]
+        jam_id = params[:data][:jam_id]
+        Jam.accept_request(user_id, jam_id)
+        redirect_to jam_path(jam_id)
     end
 
     def decline_request
-        @user = params[:data][0]
-        UserJam.where(user: @user[0], jam_id: @jam.id).destroy
-        redirect_to jam_path(@jam)
+        user_id = params[:data][:user_id]
+        jam_id = params[:data][:jam_id]
+        Jam.decline_request(user_id, jam_id)
+        redirect_to jam_path(jam_id)
     end
 
     def send_request

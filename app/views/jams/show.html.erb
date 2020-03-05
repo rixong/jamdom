@@ -20,8 +20,8 @@
                     <% if current_user.id == @jam.host_id %>
                         - <%= @jam.status(member)%> 
                         <% if @jam.status(member) == 'request' %>
-                            <%= button_to "Accept", controller: 'users', action: "accept_invite", data: {user_id: member, jam_id: @jam}%>
-                            <%= button_to "Decline", controller: 'users', action: "decline_invite", data: {user_id: current_user, jam_id: @jam}%>
+                            <%= button_to "Accept", action: "accept_request", data: {user_id: member.id, jam_id: @jam.id}%>
+                            <%= button_to "Decline", action: "decline_request", data: {user_id: member.id, jam_id: @jam.id}%>
                         <% end %>
                     <%end%>
                 </li>
