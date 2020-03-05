@@ -1,25 +1,49 @@
-<%= form_for @jam do |f| %>
-    <%=f.label :name%>
-    <%=f.text_field :name%>
+<div> <h2 class="ui center aligned header" >Setup a jam session:</h2> </div>
 
+<div class="ui grid">
+  <div class="ui five wide column">
+    <%= form_for @jam, class: 'ui form' do |f| %>
+    <br><br>
+      <%=f.label "Session name:"%><br>
+      <%=f.text_field :name%><br><br>
 
-    <%=f.label :genre%>
-    <%=f.collection_select(:genre_ids, Genre.all, :id, :name,{},{:multiple => true}) %>
+      <%=f.label :date %><br>
+      <%= f.date_field :date %>
 
-    <%=f.label :date %>
-    <%=f.date_select(:date, defualt: Date.today) %>
+      <%#f.date_select(:date, defualt: Date.today) %><br><br>
 
-    <%=f.label :time %>
-    <%=f.time_select(:time) %>
+      <%=f.label :time %><br>
+      <%= f.time_field :time %>
 
-    <%=f.label :space%>
-    <%=f.collection_select(:space_id, Space.all, :id, :name) %>
+      <%#f.time_select(:time) %><br><br>
 
-    <%=f.label :info%>
-    <%=f.text_area :info %>
+      <%=f.label "Location:"%><br>
+      <%=f.collection_select(:space_id, Space.all, :id, :name) %>
 
-    <%=f.label :tunes%>
-    <%=f.text_area :tunes %>
+      <%=f.label "Type of ensemble:"%><br>
+      <%=f.collection_select(:genre_ids, Genre.all, :id, :name) %>
+      <br><br>
 
-    <%=f.submit%>
-<%end%>
+      <%=f.label "Suggested tunes:"%><br>
+      <%=f.text_area :tunes, size: "30x8" %> 
+      <br>
+      <%=f.label "Additional infromation for musicians:"%><br>
+      <%=f.text_area :info, size: "40x8" %>
+      <br><br><br>
+
+      <div class="ui animated fade button" tabindex="0">
+        <div class="visible content">Here we go..</div>
+        <div class="hidden content">
+        <button type="submit"> LETS JAM!!!
+      </div>  
+
+    <%end%>
+
+  </div>
+  <div class="ui four wide column">
+  <br><br>
+  </div>
+
+  <div class="ui three wide column">
+  </div>
+</div>
