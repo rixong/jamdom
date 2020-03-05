@@ -14,8 +14,8 @@
 
       <div class="ui grid" >
         <div class="four wide column">
-          <%= f.label :genre_ids, "Your genres" %><br>
-          <%= f.collection_select :genre_ids, Genre.all, :id, :name, {}, {:multiple => true} %><br>
+          <%= f.label :genre_ids, "Your prefered ensemble" %><br>
+          <%= f.collection_select :genre_ids, Genre.all, :id, :name %><br>
         </div>
         <div class="eight wide column">
           <%= f.label :instrument_ids, "Your instruments" %><br>

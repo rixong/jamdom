@@ -1,21 +1,20 @@
 Rails.application.routes.draw do
 
+
+  resources :spaces
+
   resources :genres
-  resources :jams
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   
   
+  resources :jams
   get '/jams/:id/requests', to: 'jams#request_index'
   post '/jams/:id/requests', to: 'jams#accept_request'
   delete '/jams/:id/requests', to: 'jams#decline_request'
   post '/jams/index', to: 'jams#send_request'
-
-
-
-
 
   resources :users
   post '/users/index', to: 'users#send_invite'

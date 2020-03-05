@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
   def send_invite
     UserJam.create(status: 'invite', user_id: params[:data][:user_id], jam_id: params[:data][:jam_id] )
-    redirect_to @user
+    redirect_to user_path(params[:data][:user_id])
   end
 
   # def accept_invite
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     userjam_instance.update(status: "accepted")
     redirect_to user_path(@user)
   end
-  
+
   def decline_invite
     @jam = params[:data][:jam_id]
     uj = UserJam.where(user: current_user, jam_id: @jam, status: "invite")
