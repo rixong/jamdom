@@ -19,7 +19,7 @@
       <%#f.time_select(:time) %><br><br>
 
       <%=f.label "Location:"%><br>
-      <%=f.collection_select(:space_id, Space.all, :id, :name) %>
+      <%=f.collection_select(:space_id, Space.all, :id, :name) %><br>
 
       <%=f.label "Type of ensemble:"%><br>
       <%=f.collection_select(:genre_ids, Genre.all, :id, :name) %>
