@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_action :require_logged_in
+  before_action :require_logged_in, except: [:new, :create]
   
   def index
     @users = User.all
@@ -20,7 +20,6 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user)
     else
       @user.errors.full_messages
-      # byebug
       render :new
     end
   end
@@ -47,7 +46,8 @@ class UsersController < ApplicationController
   end
 
   def send_invite
-
+    UserJam.create(status: 'invite', user_id: params[:data][:user_id], jam_id: params[:data][:jam_id] )
+    redirect_to @user
   end
 
   def accept_invite
