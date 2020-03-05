@@ -16,7 +16,15 @@
         <h4>Currrent Members:</h4>
         <ul> 
             <% @jam.users.each do |member| %>
-                <li><%= link_to member.name, member%> - <%= @jam.status(member)%> </li>
+                <li><%= link_to member.name, member%>
+                    <% if current_user.id == @jam.host_id %>
+                        - <%= @jam.status(member)%> 
+                        <% if @jam.status(member) == 'request' %>
+                            <%= button_to "Accept", controller: 'users', action: "accept_invite", data: {user_id: member, jam_id: @jam}%>
+                            <%= button_to "Decline", controller: 'users', action: "decline_invite", data: {user_id: current_user, jam_id: @jam}%>
+                        <% end %>
+                    <%end%>
+                </li>
             <% end %>
         </ul>
     </div>
