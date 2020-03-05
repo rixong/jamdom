@@ -24,4 +24,6 @@ class Jam < ApplicationRecord
     result = UserJam.where( "jam_id = ? AND status = ?", self.id, "host" )[0].user_id
   end
   
+
+  
 end
