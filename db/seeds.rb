@@ -1,15 +1,12 @@
-
 Space.create(name: "Joes Garage")
 Space.create(name: "Antones")
 Space.create(name: "Continental Club")
-
 Instrument.create(name: "Guitar")
 Instrument.create(name: "Drums")
 Instrument.create(name: "Piano")
 Instrument.create(name: "Keyboard")
 Instrument.create(name: "Violin")
 Instrument.create(name: "Cello")
-
 
 Genre.create(name: "Classic Rock")
 Genre.create(name: "Jazz Combo")
@@ -21,7 +18,6 @@ Genre.create(name: "String Quartet")
 Genre.create(name: "Brass Quintet")
 Genre.create(name: "Folk Band")
 Genre.create(name: "Mariachi Band")
-
 
 User.create(name: "Rick Glascock", email: "r@email.com", phone: "512-466-4190", bio: "I love RHCP and Strvainsky.",video: "https://www.youtube.com/embed/WmjQIHF2dAQ", password: "a")
 User.create(name: "Nora Jones", email: "n@email.com", phone: "512-466-4190", bio: "I grew up singing in the church.", video: "https://www.youtube.com/embed/fd02pGJx0s0", password: "a")

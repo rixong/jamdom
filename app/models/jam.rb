@@ -29,4 +29,6 @@ class Jam < ApplicationRecord
   end
 
   
+
+  
 end

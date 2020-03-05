@@ -1,9 +1,34 @@
-<h1>Jams Index</h1>
-<%if @jams.empty? == true%>
-        <h1>You have requested all jams</h1>
-<%else%>
-        <%@jams.each do |jam|%>
-                <h3><%= link_to jam[0].name, jam_path(jam[0])%></h3>
-                <h1><%= button_to "+ Send Request", action: "send_request", data: jam.ids %></h1><br>
+<div>
+        <h1>Jams Index</h1>
+        <%if @jams.empty? == true%>
+                <h1>You have requested all jams</h1>
+        <%else%>
+                <div class="ui blue segment">
+                <%@jams.each do |jam|%>
+        <div class="ui grid">
+
+                        <div class="ui one wide column">
+                        </div>
+
+                <div class="ui seven wide column">
+                                <h3><%= link_to jam[0].name, jam_path(jam[0])%></h3>
+                                <%if jam[0].genres.first != nil%>
+                                        <h3>Style: <%= jam[0].genres.first.name%></h3>
+                                <%end%>
+                                <%temp = UserJam.where(jam_id: jam).first%>
+                                <h3>Host: <%= link_to temp.user.name, user_path(temp.user)%> </h3>
+                                <%= link_to jam[0].space.name, space_path(jam[0].space)%>
+                </div>
+                <div class="ui seven wide column"> 
+                                <h1><%= button_to "+ Send Request", action: "send_request", data: jam.ids %></h1><br>
+                </div>
+        </div>
+                <div class="ui fitted divider">
+                </div>
+
+                        <div class="ui blue one wide column">
+                        </div>
+
+                <%end%>
         <%end%>
-<%end%>
+</div>

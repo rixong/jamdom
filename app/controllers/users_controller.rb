@@ -50,12 +50,6 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:data][:user_id])
   end
 
-  # def accept_invite
-  #   binding.pry
-  #   result = UserJam.where("user_id: = ? AND jam_id: = ?", params[:data][:user_id], params[:data][:jam_id])
-  #   result.update(status: "accepted")
-  #   redirect_to user_path(@user)
-  # end
 
   def accept_invite
     @jam = params[:data][:jam_id]
