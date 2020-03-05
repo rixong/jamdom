@@ -23,5 +23,6 @@ class Jam < ApplicationRecord
   def host_id
     result = UserJam.where( "jam_id = ? AND status = ?", self.id, "host" )[0].user_id
   end
+
   
 end

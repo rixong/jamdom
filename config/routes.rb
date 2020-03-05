@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post '/users/index', to: 'users#send_invite'
   post 'users/instrument_search', to:'users#instrument_search', as: 'instruments'
   get 'users/instrument_results/:id', to:'users#instrument_results', as: 'results'
+  post 'users/accept_invite', to: 'users#accept_invite'
+  post 'users/decline_invite', to: 'users#decline_invite'
 
   root 'users#show'
 
