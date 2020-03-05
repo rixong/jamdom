@@ -28,6 +28,18 @@ class Jam < ApplicationRecord
     User.find(host_id).name
   end
 
+  def self.accept_request(user_id, jam_id)
+    result = UserJam.where('user_id = ? AND jam_id = ?', user_id, jam_id)[0]
+    result.delete
+  end
+
+
+  def self.accept_request(user_id, jam_id)
+    result = UserJam.where('user_id = ? AND jam_id = ?', user_id, jam_id)[0]
+    # binding.pry
+    result.update(status: 'accepted')
+  end
+
   
 
   
