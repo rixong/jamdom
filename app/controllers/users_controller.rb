@@ -46,7 +46,8 @@ class UsersController < ApplicationController
   end
 
   def send_invite
-
+    UserJam.create(status: 'invite', user_id: params[:data][:user_id], jam_id: params[:data][:jam_id] )
+    redirect_to @user
   end
 
   def accept_invite

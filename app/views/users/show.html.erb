@@ -23,29 +23,39 @@
         
     </div>
 
-    <div class="eight wide column">
+    <div class="seven wide column">
     
         <h2><%= @user.name%> </h2>
 
-        <iframe width="420" height="315"
-        src=<%= @user.video %>>
+        <iframe width="420" height="315">
+        <%# src=<%= @user.video %> 
         </iframe>
 
         <h4> Bio: </h4><p> <%= @user.bio %> </p>
     
     </div>
 
-    <div class="four wide column">
+    <div class="five wide column">
+      <h3> My Jams:</h3>
+      <ul>
+      <% current_user.jams.each do |jam| %>
+        <li>
+          <%= link_to jam.name, jam%> - host: <%= User.find(jam.host_id).name %>
 
-        <h4> My Jams:</h4>
-        <ul>
-        <% @user.jams.each do |jam| %>
-            <li><%= link_to jam.name, jam%></li>
-        <% end %>
-        </ul>
+          <% if jam.show_invite?(current_user, @user)%>
+            <%= button_to "Invite #{@user.name}", action: "send_invite", data: {user_id: @user, jam_id: jam}%>
+          <% end %>
+
+          <% if jam.status(current_user) == 'request'%>
+              - Pending request
+          <% end %>
+
+          <%# if %>
+
+        </li>
+      <% end %>
+      </ul>
     </div>
-
-
 </div>
 
 
