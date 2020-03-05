@@ -1,17 +1,34 @@
-<h1><%=@jam.name%></h1>
-<h1><%=@jam.space.name%></h1>
+<h1>SESSION: <%=@jam.name%> - <%= @jam.genres[0] %></h1>
+<br>
+<div class="ui grid">
+    <div class="ui five wide column">
+        <h3>Hosted by: <%= link_to @jam.host_name, user_path(@jam.host_id)%></h3>
+        <h3>Location: <%= link_to @jam.space.name, space_path(@jam.space) %></h3>
+        <h3>Date: <%= @jam.date %></h3>
+        <h3>Time: <%= @jam.time%></h3>
 
-<%@jam.genres.each do |genre|%>
-    <%=genre.name%>
-<%end%>
-<h1><%=@jam.date%></h1>
-<h1><%=@jam.time%></h1>
-<h1><%=@jam.info%></h1>
-<h1><%=@jam.tunes%></h1>
-<%@user_jams.each do |user_jam|%>
-    <h2><%= link_to user_jam.user.name, user_path(user_jam.user)%></h2>
-<%end%>
+        </h3>
+    </div>
 
-<%if !@jam.is_host?(current_user) %>
-    <%= link_to "View Requests", action: "request_index" %>
-<%end%>
+
+    <div class="ui six wide column">
+
+        <h4>Currrent Members:</h4>
+        <ul> 
+            <% @jam.users.each do |member| %>
+                <li><%= link_to member.name, member%> - <%= @jam.status(member)%> </li>
+            <% end %>
+        </ul>
+    </div>
+
+    <div class="ui five wide column">
+
+        <h4>Tune List: </h4>
+        <%=@jam.tunes %>
+
+        <h4>Additional List: </h4>
+        <%=@jam.info %>
+
+    </div>
+</div>
+

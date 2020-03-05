@@ -1,42 +1,51 @@
-<div> <h2 class="ui center aligned header"> Setup a jam sessions</h1></div><br><br>
+
+<div> <h2 class="ui center aligned header" >Setup a jam session:</h2> </div>
 
 <div class="ui grid">
-    <div class="ui five wide column">
-        <%= form_for @jam, class: 'ui form' do |f|%>
-            
-            <%=f.label :name%><br>
-            <%=f.text_field :name%><br><br>
+  <div class="ui five wide column">
+    <%= form_for @jam, class: 'ui form' do |f| %>
+    <br><br>
+      <%=f.label "Session name:"%><br>
+      <%=f.text_field :name%><br><br>
 
+      <%=f.label :date %><br>
+      <%= f.date_field :date %>
 
-            <%=f.label :space%><br>
-            <%=f.collection_select(:space_id, Space.all, :id, :name) %><br><br>
-        
-            <%=f.label :date %><br>
-            <%=f.date_select(:date, defualt: Date.today) %><br><br>
+      <%#f.date_select(:date, defualt: Date.today) %><br><br>
 
-            <%=f.label :time %><br>
-            <%=f.time_select(:time) %><br><br>
-    </div>
-    <div class="ui five wide column">
-            <%=f.label "Type of ensemble"%><br>
-            <%=f.collection_select(:genre_ids, Genre.all, :id, :name) %><br><br>
+      <%=f.label :time %><br>
+      <%= f.time_field :time %>
 
+      <%#f.time_select(:time) %><br><br>
 
-            <%=f.label :info%><br>
-            <%=f.text_area :info %><br><br>
+      <%=f.label "Location:"%><br>
+      <%=f.collection_select(:space_id, Space.all, :id, :name) %>
 
-    </div>
+      <%=f.label "Type of ensemble:"%><br>
+      <%=f.collection_select(:genre_ids, Genre.all, :id, :name) %>
+      <br><br>
 
-    <div class="ui six wide column">
-            <%=f.label :tunes%><br>
-            <%=f.text_area :tunes %><br><br>
+      <%=f.label "Suggested tunes:"%><br>
+      <%=f.text_area :tunes, size: "30x8" %> 
+      <br>
+      <%=f.label "Additional infromation for musicians:"%><br>
+      <%=f.text_area :info, size: "40x8" %>
+      <br><br><br>
 
-            <div class="ui animated fade button" tabindex="0">
-            <div class="visible content">Here we go..</div>
-            <div class="hidden content">
-            <h5><button type="submit"> LETS JAM!!!</h5>
-            </div>            
+      <div class="ui animated fade button" tabindex="0">
+        <div class="visible content">Here we go..</div>
+        <div class="hidden content">
+        <button type="submit"> LETS JAM!!!
+      </div>  
 
-        <%end%>
-    </div>
+    <%end%>
+
+  </div>
+  <div class="ui four wide column">
+  <br><br>
+  </div>
+
+  <div class="ui three wide column">
+  </div>
 </div>
+

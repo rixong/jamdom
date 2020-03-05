@@ -1,21 +1,20 @@
 Rails.application.routes.draw do
 
+
+  resources :spaces
+
   resources :genres
-  resources :jams
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   
   
+  resources :jams
   get '/jams/:id/requests', to: 'jams#request_index'
   post '/jams/:id/requests', to: 'jams#accept_request'
   delete '/jams/:id/requests', to: 'jams#decline_request'
   post '/jams/index', to: 'jams#send_request'
-
-
-
-
 
   resources :users
   post '/users/show', to: 'users#send_invite'
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
   post '/users/delete_invite', to: 'users#decline_invite'
   post 'users/instrument_search', to:'users#instrument_search', as: 'instruments'
   get 'users/instrument_results/:id', to:'users#instrument_results', as: 'results'
+  post 'users/accept_invite', to: 'users#accept_invite'
+  post 'users/decline_invite', to: 'users#decline_invite'
 
   root 'users#show'
 
