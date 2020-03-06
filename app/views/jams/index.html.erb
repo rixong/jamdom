@@ -1,61 +1,39 @@
 <div>
-        <div>
-                <div class = "ui grid">
+  <div>
+    <div class = "ui grid">
 
-                        <div class = "ui grid">
+      <div class = "ui grid">
 
-                                                                <div class="ui segment">
-                                                        <h1>Jams Index</h1>
-                                                        <%if @jams.empty? == true%>
-                                                                <h1>No new jams available</h1>
-                                                        <%else%>
-                                                                        <%@jams.each do |jam|%>
-                                                                                        <div class="ui green eight wide column">
-                                                                                                <h3><%= link_to jam[0].name, jam_path(jam[0])%></h3>
-                                                                                                <%if jam[0].genres.first != nil%>
-                                                                                                        <h3>Style: <%= jam[0].genres.first.name%></h3>
-                                                                                                 <%end%>
-                                                                                                <%temp = UserJam.where(jam_id: jam).first%>
-                                                                                                <h3>Host: <%= link_to temp.user.name, user_path(temp.user)%> </h3>
-                                                                                                <%= link_to jam[0].space.name, space_path(jam[0].space)%>
-                                                                                        </div>
-                                                                                        <div class="ui green eight wide column"> 
-                                                                                                <h1><%= button_to "+ Send Request", action: "send_request", data: jam.ids %></h1><br>
-                                                                                        </div>
+        <div class="ui segment">
+          <h1>Jams Index</h1>
+          <%if @jams.empty? == true%>
+            <h1>No new jams available</h1>
+          <%else%>
+            <%@jams.each do |jam|%>
+              <div class="ui green eight wide column">
+                <h3><%= link_to jam[0].name, jam_path(jam[0])%></h3>
+                <%if jam[0].genres.first != nil%>
+                  <h3>Style: <%= jam[0].genres.first.name%></h3>
+                <%end%>
+                <%temp = UserJam.where(jam_id: jam).first%>
+                <h3>Host: <%= link_to temp.user.name, user_path(temp.user)%> </h3>
+                <%= link_to jam[0].space.name, space_path(jam[0].space)%>
+              </div>
+              <div class="ui green eight wide column"> 
+                <h1><%= button_to "+ Send Request", action: "send_request", data: jam.ids %></h1><br>
+              </div>
                                                                 
-                                                        <div class="ui fitted divider">
-                                                        </div>              
-                                                                        <%end%>
-                                                                        </div>
-                                                                        </div>
-                                                         <% end %>               
-    <div class="ui ten wide column">
-      <h3> My Jams:</h3>
-      <ul>
-      <% current_user.jams.each do |jam| %>
-        <li>
-          <%= link_to jam.name, jam%> - host: <%= User.find(jam.host_id).name %>
-
-          <% if jam.show_invite?(current_user, @user)%>
-            <%= button_to "Invite #{@user.name}", action: "send_invite", data: {user_id: @user, jam_id: jam}%>
-          <% end %>
-
-          <% if jam.status(current_user) == 'request'%>
-              - Pending host acceptance
-          <% end %>
-
-
-          <% if jam.status(current_user) == 'invite'%>
-            <%= button_to "Accept", controller: 'users', action: "accept_invite", data: {user_id: current_user, jam_id: jam}%>
-            <%= button_to "Decline", controller: 'users', action: "decline_invite", data: {user_id: current_user, jam_id: jam}%>
-          <% end %>
-
-                </li>
-        <% end %>
-                 </ul>
-                </div>        
-                        </div>
-                                   </div>                        
-     
+              <div class="ui fitted divider">
+              </div>              
+            <%end%>
         </div>
+      </div>
+            <% end %>  
+
+
+      <div class="ui ten wide column">
+        <%= render 'users/my_jams' %>      
+      </div>
+    </div>                         
+  </div>
 </div>
