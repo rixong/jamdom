@@ -1,39 +1,47 @@
-<div>
-  <div>
-    <div class = "ui grid">
+<div class = "ui grid">
+  <div class="ui six wide column">
+  
+      <%# <div class="ui segment"> %>
+        <h1>Jams Index</h1>
+        <div class="ui fitted divider"></div>
+       
+        <%if @jams.empty? == true%>
+          <h1>No new jams available</h1>
+        <%else%>
 
-      <div class = "ui grid">
+          <%@jams.each do |jam|%>
+            <div class = "ui grid">
 
-        <div class="ui segment">
-          <h1>Jams Index</h1>
-          <%if @jams.empty? == true%>
-            <h1>No new jams available</h1>
-          <%else%>
-            <%@jams.each do |jam|%>
-              <div class="ui green eight wide column">
-                <h3><%= link_to jam[0].name, jam_path(jam[0])%></h3>
-                <%if jam[0].genres.first != nil%>
-                  <h3>Style: <%= jam[0].genres.first.name%></h3>
-                <%end%>
-                <%temp = UserJam.where(jam_id: jam).first%>
-                <h3>Host: <%= link_to temp.user.name, user_path(temp.user)%> </h3>
-                <%= link_to jam[0].space.name, space_path(jam[0].space)%>
+              <div class="ui eight wide column">
+              <p></p>
+                <h5><%= link_to jam[0].name, jam_path(jam[0])%></h5>
+                  <%if jam[0].genres.first != nil%>
+                    <h4>Style: <%= jam[0].genres.first.name%></h4>
+                  <%end%>
+                  <%temp = UserJam.where(jam_id: jam).first%>
+                  <h3>Host: <%= link_to temp.user.name, user_path(temp.user)%> </h3>
+                  <%= link_to jam[0].space.name, space_path(jam[0].space)%>
+                  <br><br>
               </div>
-              <div class="ui green eight wide column"> 
-                <h1><%= button_to "+ Send Request", action: "send_request", data: jam.ids %></h1><br>
+
+              <div class="ui four wide column">
+              <br><br><br>
+              <h2><%= button_to "+ Send Request", action: "send_request", data: jam.ids %></h2><br>                                                 
               </div>
-                                                                
-              <div class="ui fitted divider">
-              </div>              
-            <%end%>
-        </div>
-      </div>
-            <% end %>  
 
-
-      <div class="ui six wide column">
-        <%= render 'users/my_jams' %>      
-      </div>
-    </div>                         
+            </div>
+          <div class="ui fitted divider"></div>
+          <% end %>
+        <% end %>
+    </div>
+    
+  <div class="ui four wide column">
+      
   </div>
-</div>
+
+  <div class="ui six wide column">
+    <%= render 'users/my_jams' %>      
+  </div>
+
+</div>                         
+

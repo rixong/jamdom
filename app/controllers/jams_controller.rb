@@ -34,10 +34,13 @@ class JamsController < ApplicationController
 
     def create
         @jam = Jam.new(jam_params)
-        @jam.save
-        UserJam.create(status: "host", user_id: current_user.id, jam_id: @jam.id)
-        
-        redirect_to jam_path(@jam)
+        if @jam.valid?
+            @jam.save
+            UserJam.create(status: "host", user_id: current_user.id, jam_id: @jam.id)
+            redirect_to jam_path(@jam)
+        else
+            render new_jam_path
+        end
     end
 
     def edit

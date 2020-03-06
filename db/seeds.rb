@@ -50,7 +50,7 @@ Genre.create(name: "Mariachi Band")
 
 User.create(name: "Rick Glascock", email: "r@email.com", phone: "512-466-4190", bio: "I love RHCP and Strvainsky.",video: "https://www.youtube.com/embed/WmjQIHF2dAQ", password: "a")
 User.create(name: "Nora Jones", email: "n@email.com", phone: "512-466-4190", bio: "I grew up singing in the church.", video: "https://www.youtube.com/embed/fd02pGJx0s0", password: "a")
-User.create(name: "Aaiden Witten", email: "a@email.com", phone: "512-466-4190", bio: "Love the bossa Nova", password: "a")
+User.create(name: "Aaiden Witten", email: "a@email.com", phone: "512-466-4190", bio: "Love the bossa Nova", video: "https://www.youtube.com/embed/XyJiPzjvUMk", password: "a")
 User.create(name: "Joe Fernandez", email: "j@email.com", phone: "512-466-4190", bio: "Love the bossa Nova", password: "a")
 User.create(name: "Barry", email: "b1@email.com", phone: "512-466-4190", bio: "Love the bossa Nova", password: "a")
 User.create(name: "Bob", email: "b2@email.com", phone: "512-466-4190", bio: "Love the bossa Nova", password: "a")
