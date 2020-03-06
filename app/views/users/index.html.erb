@@ -2,7 +2,7 @@
 <div class="ui grid">
   <div class="ui four wide column"></div>
 
-  <div class="ui six wide column">
+  <div class="ui five wide column">
     <h2>Musicians:</h2>
     <div class="ui list">
       <% @users.each do |user| %>
@@ -14,11 +14,11 @@
 
   <div class="ui four wide column">
     <div class="ui grid">
-      <div class="ui two wide column">
+      <div class="ui eight wide column">
         <div class="ui form">
-
+    <br>
           <%= form_with url: instruments_path do |f|%>
-            <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
+            <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br><br>
             <%= f.submit "Submit search"%>
           <% end %>
 
