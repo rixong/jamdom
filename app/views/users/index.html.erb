@@ -12,14 +12,16 @@
     </div>
   </div>
 
-  <div class="ui four wide column">
+  <div class="ui five wide column">
     <div class="ui grid">
       <div class="ui eight wide column">
+      <br>
+      <h4>Instrument Search:</h4>
         <div class="ui form">
-    <br>
+          <br>
           <%= form_with url: instruments_path do |f|%>
-            <%= f.collection_select :instrument_ids, Instrument.sort_by_name, :id, :name %><br><br>
-            <%= f.submit "Submit search"%>
+            <%= f.submit "Submit search"%><br><br>
+            <%= f.collection_select :instrument_ids, Instrument.sort_by_name, :id, :name %>
           <% end %>
 
         </div>
