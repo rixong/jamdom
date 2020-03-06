@@ -85,7 +85,7 @@ class JamsController < ApplicationController
 
     private 
     def jam_params
-        params.require(:jam).permit(:name, :space_id, {:genre_ids => []}, :date, :time, :info, :tunes)
+        params.require(:jam).permit(:name, :space_id, :genre_ids, :date, :time, :info, :tunes)
     end
 
     def set_jam
