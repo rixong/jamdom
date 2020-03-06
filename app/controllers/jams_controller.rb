@@ -70,9 +70,10 @@ class JamsController < ApplicationController
     end
 
     def send_request
+        
         @data = params[:data][0]
         @jam = Jam.where(id: @data)
-        UserJam.create(user_id: current_user.id, jam_id: @jam[0].id, status: "request") 
+        UserJam.create(user_id: current_user.id, jam_id: @jam[0].id, status: "request")
 
 
         @jams = UserJam.where("user_id != ?", current_user.id)
@@ -85,7 +86,7 @@ class JamsController < ApplicationController
 
     private 
     def jam_params
-        params.require(:jam).permit(:name, :space_id, {:genre_ids => []}, :date, :time, :info, :tunes)
+        params.require(:jam).permit(:name, :space_id, :genre_ids, :date, :time, :info, :tunes)
     end
 
     def set_jam

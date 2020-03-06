@@ -19,7 +19,7 @@
         </div>
         <div class="eight wide column">
           <%= f.label :instrument_ids, "Your instruments" %><br>
-          <%= f.collection_select :instrument_ids, Instrument.all, :id, :name, {}, {:multiple => true} %><br>
+          <%= f.collection_select :instrument_ids, Instrument.sort_by_name, :id, :name, {}, {:multiple => true} %><br>
         </div>
       </div>
       <br> 

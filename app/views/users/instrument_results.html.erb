@@ -1,9 +1,25 @@
-<h2>Musicians who play <%= Instrument.get_instrument_by_id(params[:id]) %> </h2>
 
-<div class="ui list">
-  <% @users.each do |user| %>
-    <div class="ui list"><%= link_to user.name, user_path(user) %> - 
+
+
+
+
+
+<div class="ui grid">
+  <div class="ui four wide column"></div>
+
+  <div class="ui five wide column">
+    <h2>Musicians who play <%= Instrument.get_instrument_by_id(params[:id]) %> </h2>
+
+    <div class="ui list">
+      <% @users.each do |user| %>
+        <div class="ui list"><%= link_to user.name, user_path(user) %> - 
           <%= user.instruments.map{|i|i.name}.join(', ') %></div>
-  <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="ui four wide column">
+    <div><%= link_to "Back",  users_path, class: "ui button"%></div>
+  </div>
+  
 </div>
-<div><%= link_to "Back",  users_path, class: "ui button"%></div>

@@ -2,19 +2,19 @@
 @import "semantic-ui/collections/menu";
 
 body {
-  background-color: rgb(182, 182, 182);
-  margin-top: 20px;
+  background-color: rgb(202, 201, 201);
+  margin-top: 30px;
 
 }
 
 .large-font{
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
   color:rgb(41, 116, 122)
 }
 
 .small-font{
-  font-size: 1rem;
+  font-size: 2rem;
   font-style: italic;
   }
 
@@ -23,6 +23,22 @@ body {
 }
 
 h1.ui.header {
-  color: rgb(34, 115, 121);
+  color: rgb(24, 81, 85);
   font-size: 4rem;
 }
+
+a {
+  color:rgb(41, 116, 122)!important; 
+  font-size: 16px !important; 
+  font-weight: bold;
+
+}
+
+.message {
+  color: rgb(111, 0, 255)
+}
+
+.darken {
+  background-color: whitesmoke
+}
+

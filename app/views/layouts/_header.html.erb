@@ -4,13 +4,40 @@
 </div>
 
 <% if logged_in?%>
-  <%= link_to "Log out", logout_path, class: 'ui button very small', method: :post %>
-  <%= link_to "Edit profile", edit_user_path(current_user), class: 'ui button small' %>
-  <%= link_to "Setup a jam",  new_jam_path, class: 'ui button small' %>
-  <%= link_to "Browse musicians",  users_path, class: 'ui button small' %>
-  <%= link_to "Browse jams",  jams_path, class: 'ui button small' %>
-  Current user: <%= link_to current_user.name, current_user%>
+
+  <div class="ui secondary pointing menu">
+  <a class="item">
+    <%= link_to "Home", user_path(current_user) %>
+  </a>
+  <a class="item">
+    <%= link_to "Edit profile", edit_user_path(current_user) %>
+  </a>
+  <a class="item">
+    <%= link_to "Browse musicians",  users_path %>
+  </a>
+  <a class="item">
+          <%= link_to "Browse jams",  jams_path %>
+  </a>
+  <div class="right menu">
+    <a class="ui item">
+      <%= link_to current_user.name, current_user%>
+    </a>
+    <a class="item active">
+      <%= link_to "Log out", logout_path, method: :post %>
+    </a>
+  </div>
+</div>
+
 <% else %>
-  <%= link_to "Log in", login_path, class: 'ui button small' %>
+  <div class="ui secondary pointing menu">
+
+      <div class="right menu">
+        <a class="item active">
+          <%= link_to "Log in", login_path %>
+        </a>
+        <a class="ui item">
+          <%= link_to(controller: 'users', action: 'new') { 'New user' } %>
+        </a>
+    </div>
+  </div>
 <% end %>
-<div class="ui divider"></div>

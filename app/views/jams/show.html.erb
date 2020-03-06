@@ -1,35 +1,79 @@
-<h1>SESSION: <%=@jam.name%> - <%= @jam.genres[0] %></h1>
+      <div class="ui center aligned header">
+        <h1><%=@jam.name%><br></h1>
+        </h2>(a <%= @jam.genres[0].name %>)</h2>
+      </div>
 <br>
+<%# binding.pry%>
 <div class="ui grid">
     <div class="ui five wide column">
         <h3>Hosted by: <%= link_to @jam.host_name, user_path(@jam.host_id)%></h3>
         <h3>Location: <%= link_to @jam.space.name, space_path(@jam.space) %></h3>
-        <h3>Date: <%= @jam.date %></h3>
-        <h3>Time: <%= @jam.time%></h3>
+        <h3>Date: <%= @jam.date.strftime("%A, %B %d %Y") %></h3>
+        <h3>Time: <%= @jam.time.strftime("%I:%M %p") %></h3>
 
         </h3>
     </div>
 
 
-    <div class="ui six wide column">
+    <div class="ui seven wide column">
 
-        <h4>Currrent Members:</h4>
-        <ul> 
-            <% @jam.users.each do |member| %>
-                <li><%= link_to member.name, member%>
-                    <% if current_user.id == @jam.host_id %>
-                        - <%= @jam.status(member)%> 
-                        <% if @jam.status(member) == 'request' %>
-                            <%= button_to "Accept", action: "accept_request", data: {user_id: member.id, jam_id: @jam.id}%>
-                            <%= button_to "Decline", action: "decline_request", data: {user_id: member.id, jam_id: @jam.id}%>
-                        <% end %>
-                    <%end%>
-                </li>
+      <h4>Currrent Members:</h4>
+      <ul>
+        <% @jam.users.each do |member| %>
+
+          <li><%= link_to member.name, member%>
+            <span>
+              <% member.instruments.each do |inst|%>
+                <%= inst.name%>
+              <% end %>
+            </span>
+
+            <% if current_user.id == @jam.host_id %>
+              <div class="message"> <%= @jam.status(member) %> </div> 
+              <% if @jam.status(member) == 'request' %>
+                <div class="ui grid">
+                  <div class="eight wide column">
+                    <div class="message"> Wants to join this session.</div>
+                  </div>
+                  <div class="three wide column">
+                    <%= button_to "Accept", action: "accept_request", data: {user_id: member.id, jam_id: @jam.id}%>
+                  </div>
+                  <div class="two wide column">
+                    <%= button_to "Decline", action: "decline_request", data: {user_id: member.id, jam_id: @jam.id}%>
+                  </div>
+                </div>
+              <% end %>
+            <%end%>
+
+            <% if current_user == member && @jam.status(member) == 'invite'%>
+              <div class="ui grid">
+                <div class="seven wide column">
+                  <div class="message"> - You've been invited!</div>
+                </div>
+                <div class="three wide column">
+                  <%= button_to "Accept", controller: "users", action: "accept_invite", data: {user_id: current_user, jam_id: @jam}%>
+                </div>
+                <div class="three wide column">
+                  <%= button_to "Decline", controller: "users", action: "decline_invite", data: {user_id: current_user, jam_id: @jam}%>
+                </div>
+              </div>
             <% end %>
-        </ul>
+
+            <% if current_user = member && @jam.status(member) == 'request' %>
+              <div class="message"> - Pending host acceptance</div>
+            <% end %>
+
+          </li>
+        <% end %>
+      </ul>
+        <div class="ui eight wide column"> 
+          <% if !@jam.users.include?(current_user)%>
+            <h4><%= button_to "Join this session.", action: "send_request", data: @jam.id %></h4><br>
+          <% end %>
+        </div>
     </div>
 
-    <div class="ui five wide column">
+    <div class="ui four wide column">
 
         <h4>Tune List: </h4>
         <%=@jam.tunes %>

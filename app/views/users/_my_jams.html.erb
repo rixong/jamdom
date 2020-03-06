@@ -1,0 +1,39 @@
+  <h3> <%= current_user.name%>'s Jams:</h3>
+  <ul>
+    <% current_user.jams.each do |jam| %>
+      <li>
+        <%= link_to jam.name, jam%> - host: <%= User.find(jam.host_id).name %>
+
+        <% if jam.show_invite?(current_user, @user)%>
+          <%= button_to "Invite #{@user.name}", action: "send_invite", data: {user_id: @user.id, jam_id: jam.id}%>
+        <% end %>
+
+        <% if jam.status(current_user) == 'request'%>
+            <div class="message"> - Pending host acceptance</div>
+        <% end %>
+
+
+        <% if jam.status(current_user) == 'invite'%>
+        <div class="ui grid">
+          <div class="seven wide column">
+            <div class="message"> - You've been invited!</div>
+          </div>
+          <div class="three wide column">
+            <%= button_to "Accept", controller: "users", action: "accept_invite", data: {user_id: current_user, jam_id: jam}%>
+          </div>
+          <div class="three wide column">
+            <%= button_to "Decline", controller: "users", action: "decline_invite", data: {user_id: current_user, jam_id: jam}%>
+          </div>
+        </div>
+        <% end %>
+
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="ui grid">
+    <div class="five wide column"></div>
+    <div class="six wide column">
+      <%= link_to "Setup a jam",  new_jam_path, class: 'ui button small' %>
+    </div>
+  </div>
