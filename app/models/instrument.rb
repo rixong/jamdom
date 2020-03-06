@@ -5,4 +5,9 @@ class Instrument < ApplicationRecord
   def self.get_instrument_by_id(id)
     arr = Instrument.where('id = ?', id)[0].name
   end
+
+  def self.sort_by_name
+    Instrument.order(:name)
+  end
+
 end

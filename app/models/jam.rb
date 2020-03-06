@@ -5,6 +5,9 @@ class Jam < ApplicationRecord
   has_many :genre_jams
   has_many :genres, through: :genre_jams
 
+  validates :date, presence: true
+  validates :time, presence: true
+
 
   def is_host?(user)
       status(user) == 'host'

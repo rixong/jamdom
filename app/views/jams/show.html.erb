@@ -20,13 +20,20 @@
       <h4>Currrent Members:</h4>
       <ul>
         <% @jam.users.each do |member| %>
+
           <li><%= link_to member.name, member%>
+            <span>
+              <% member.instruments.each do |inst|%>
+                <%= inst.name%>
+              <% end %>
+            </span>
+
             <% if current_user.id == @jam.host_id %>
-              - <%= @jam.status(member)%> 
+              <div class="message"> <%= @jam.status(member) %> </div> 
               <% if @jam.status(member) == 'request' %>
                 <div class="ui grid">
                   <div class="eight wide column">
-                   Wants to join this session.
+                    <div class="message"> Wants to join this session.</div>
                   </div>
                   <div class="three wide column">
                     <%= button_to "Accept", action: "accept_request", data: {user_id: member.id, jam_id: @jam.id}%>
@@ -37,9 +44,33 @@
                 </div>
               <% end %>
             <%end%>
+
+            <% if current_user == member && @jam.status(member) == 'invite'%>
+              <div class="ui grid">
+                <div class="seven wide column">
+                  <div class="message"> - You've been invited!</div>
+                </div>
+                <div class="three wide column">
+                  <%= button_to "Accept", controller: "users", action: "accept_invite", data: {user_id: current_user, jam_id: @jam}%>
+                </div>
+                <div class="three wide column">
+                  <%= button_to "Decline", controller: "users", action: "decline_invite", data: {user_id: current_user, jam_id: @jam}%>
+                </div>
+              </div>
+            <% end %>
+
+            <% if current_user = member && @jam.status(member) == 'request' %>
+              <div class="message"> - Pending host acceptance</div>
+            <% end %>
+
           </li>
         <% end %>
       </ul>
+        <div class="ui eight wide column"> 
+          <% if !@jam.users.include?(current_user)%>
+            <h4><%= button_to "Join this session.", action: "send_request", data: @jam.id %></h4><br>
+          <% end %>
+        </div>
     </div>
 
     <div class="ui four wide column">

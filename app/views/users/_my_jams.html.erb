@@ -1,4 +1,4 @@
-  <h3> My Jams:</h3>
+  <h3> <%= current_user.name%>'s Jams:</h3>
   <ul>
     <% current_user.jams.each do |jam| %>
       <li>
@@ -19,13 +19,14 @@
             <div class="message"> - You've been invited!</div>
           </div>
           <div class="three wide column">
-            <%= button_to "Accept", action: "accept_invite", data: {user_id: current_user, jam_id: jam}%>
+            <%= button_to "Accept", controller: "users", action: "accept_invite", data: {user_id: current_user, jam_id: jam}%>
           </div>
           <div class="three wide column">
-            <%= button_to "Decline", action: "decline_invite", data: {user_id: current_user, jam_id: jam}%>
+            <%= button_to "Decline", controller: "users", action: "decline_invite", data: {user_id: current_user, jam_id: jam}%>
           </div>
         </div>
         <% end %>
+
       </li>
     <% end %>
   </ul>

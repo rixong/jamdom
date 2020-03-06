@@ -18,7 +18,7 @@
         <div class="ui form">
     <br>
           <%= form_with url: instruments_path do |f|%>
-            <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br><br>
+            <%= f.collection_select :instrument_ids, Instrument.sort_by_name, :id, :name %><br><br>
             <%= f.submit "Submit search"%>
           <% end %>
 
