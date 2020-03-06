@@ -6,18 +6,20 @@
 
 <div class="ui grid">
   <div class="ui four wide column"></div>
-  <div class="ui eight wide column">
-    <h2>User login:</h2>
-    <%= form_for @user, url: login_path, method: :post do |f| %>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-      <br><br>
-      <%= f.label :password %>
-      <%= f.password_field :password %><br><br>
+  <div class="ui six wide column">
+    <div class="ui form">
+      <h2>User login:</h2>
+      <%= form_for @user, url: login_path, method: :post do |f| %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+        <br><br>
+        <%= f.label :password %>
+        <%= f.password_field :password %><br><br>
 
-      <%= f.submit "Here we go...", :class => "ui button" %><br><br>
-      <%= link_to(controller: 'users', action: 'new') { 'new user' } %>
-    <% end %>
-  </div>
+        <%= f.submit "Here we go...", :class => "ui button" %><br><br>
+        <%= link_to(controller: 'users', action: 'new') { 'new user' } %>
+      <% end %>
+    </div>
   <div class="ui four wide column"></div>
+  </div>
 </div>

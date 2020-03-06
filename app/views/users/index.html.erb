@@ -1,18 +1,30 @@
-<h2>Musicians:</h2>
-
-<div class="ui list">
-  <% @users.each do |user| %>
-    <div class="ui list"><%= link_to user.name, user_path(user) %> - 
-          <%= user.instruments.map{|i|i.name}.join(', ') %></div>
-  <% end %>
-</div>
-
 
 <div class="ui grid">
-  <div class="two wide column">
-    <%= form_with url: instruments_path, class: "ui form"  do |f|%>
-      <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
-      <%= f.submit "Submit search"%>
-    <% end %>
+  <div class="ui four wide column"></div>
+
+  <div class="ui six wide column">
+    <h2>Musicians:</h2>
+    <div class="ui list">
+      <% @users.each do |user| %>
+        <div class="ui list"><%= link_to user.name, user_path(user) %> - 
+              <%= user.instruments.map{|i|i.name}.join(', ') %></div>
+      <% end %>
+    </div>
   </div>
+
+  <div class="ui four wide column">
+    <div class="ui grid">
+      <div class="ui two wide column">
+        <div class="ui form">
+
+          <%= form_with url: instruments_path do |f|%>
+            <%= f.collection_select :instrument_ids, Instrument.all, :id, :name %><br>
+            <%= f.submit "Submit search"%>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>
