@@ -1,7 +1,7 @@
 # JamDom Tinder for Playahs
 JamDom provides a platform for musicians to esily create jam sessions and meet other musicians that share interest in the same genre. JamDom fuctions include: user creation, jam creation, jam invite, jam requests, index's and search functions. This app was created with the desire to bring musicians together and promote band creation and eventually band formation and gig pursuit.
 
-## Getting Started
+# Getting Started
 # Ruby version
 Ruby 2.6
 # System dependencies
